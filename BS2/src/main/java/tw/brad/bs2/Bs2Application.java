@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 @SpringBootApplication
 public class Bs2Application{
-	User1 user1 = new User1();
 
 	public static void main(String[] args) {
 		SpringApplication.run(Bs2Application.class, args);
