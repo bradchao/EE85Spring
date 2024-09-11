@@ -28,6 +28,7 @@ public class Brad04 {
 		
 		((BigLottery)lottery1).m1();
 		((BigLottery)lottery1).poker1();
+		
 		return "brad04";
 	}
 	

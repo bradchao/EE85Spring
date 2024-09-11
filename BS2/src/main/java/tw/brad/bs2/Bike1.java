@@ -3,7 +3,6 @@ package tw.brad.bs2;
 import org.springframework.stereotype.Component;
 
 public class Bike1 implements Bike{
-	
 	@Override
 	public void upSpeed() {
 		System.out.println("Bike1:upSpeed()");
