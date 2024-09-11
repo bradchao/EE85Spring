@@ -1,5 +1,7 @@
 package tw.brad.bs2;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +10,8 @@ public class TodayLottery implements Lottery{
 	
 	@Override
 	public Integer createLottery() {
-		return null;
+		int lottery = new Random().nextInt(1, 38+1);
+		return lottery;
 	}
 
 }
