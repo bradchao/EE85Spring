@@ -4,7 +4,7 @@ import tw.brad.bs2.model.User;
 import java.util.*;
 
 public interface UserDao {
-	public void add(User user);
+	public User add(User user);
 	
 	public void delete(User user);
 	public void delete(User user, Long id);

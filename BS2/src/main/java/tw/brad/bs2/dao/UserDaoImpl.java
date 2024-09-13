@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
 
 import tw.brad.bs2.model.User;
@@ -17,7 +19,7 @@ public class UserDaoImpl implements UserDao{
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
 	@Override
-	public void add(User user) {
+	public User add(User user) {
 		String sql = "INSERT INTO user (account,passwd,name) VALUES (:account, :passwd, :name)";
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -25,7 +27,18 @@ public class UserDaoImpl implements UserDao{
 		map.put("passwd", user.getPasswd());
 		map.put("name", user.getName());
 		
-		namedParameterJdbcTemplate.update(sql, map);
+		// 以下取得新增的 id
+		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+		MapSqlParameterSource source = new MapSqlParameterSource(map);
+		
+		int num = namedParameterJdbcTemplate.update(sql, source, keyHolder);
+		if (num > 0) {
+			Long id = keyHolder.getKey().longValue();
+			user.setId(id);
+			return user;
+		}else {
+			return null;
+		}
 		
 	}
 

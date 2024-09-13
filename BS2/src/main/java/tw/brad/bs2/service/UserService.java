@@ -1,7 +1,8 @@
 package tw.brad.bs2.service;
 
 import tw.brad.bs2.model.User;
+import tw.brad.bs2.model.UserReturn;
 
 public interface UserService {
-	public void addUser(User user);
+	public UserReturn addUser(User user);
 }
