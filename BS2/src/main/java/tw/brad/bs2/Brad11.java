@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +38,19 @@ public class Brad11 {
 		
 		return "brad112";
 	}
+	
+	@RequestMapping("/brad113/{id}")
+	public String brad113(@PathVariable Long id) {
+		String sql = "DELETE FROM user WHERE id = :id";
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		namedParameterJdbcTemplate.update(sql, map);
+		
+		return "brad113";
+	}
+	
+	
+	
 	
 	
 	
