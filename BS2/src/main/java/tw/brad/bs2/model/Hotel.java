@@ -1,5 +1,8 @@
 package tw.brad.bs2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties( ignoreUnknown = true)
 public class Hotel {
 	private Long id;
 	private String name;
