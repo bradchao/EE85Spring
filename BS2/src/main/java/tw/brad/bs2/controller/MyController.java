@@ -32,5 +32,9 @@ public class MyController {
 		return "brad02";	// thymeleaf => templates => brad01.html
 	}
 	
+	@GetMapping("/user/reg")
+	public String reg() {
+		return "reg";	// thymeleaf => templates => brad01.html
+	}
 	
 }

@@ -2,6 +2,7 @@ package tw.brad.bs2.controller;
 
 import java.io.IOException;
 
+import org.mindrot.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -56,5 +57,22 @@ public class UserController {
 		
 	}
 	
+	@PostMapping("/user/reg")
+	public void userReg(@RequestParam String account,
+				@RequestParam String passwd,
+				@RequestParam String name,
+				MultipartFile icon) {
+
+		String sql = "INSERT INTO user (account,passwd,name,icon) VALUES (?,?,?,?)";
+		try {
+			int n = jdbcTemplate.update(sql, account, BCrypt.hashpw(passwd, BCrypt.gensalt()),
+									name,icon.getBytes());
+			System.out.println(n);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+	}
 	
+
 }
