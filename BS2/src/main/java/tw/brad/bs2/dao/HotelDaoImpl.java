@@ -44,6 +44,8 @@ public class HotelDaoImpl implements HotelDao{
 
 	@Override
 	public Integer add(List<Hotel> hotels) {
+		deleteAll();
+		
 		String sql = "INSERT INTO hotel (name,addr,tel) VALUES (:name, :addr, :tel)";
 		
 		MapSqlParameterSource[] sources =  new MapSqlParameterSource[hotels.size()];
@@ -61,5 +63,16 @@ public class HotelDaoImpl implements HotelDao{
 				
 		return Integer.valueOf(sum);
 	}
+	
+	private void deleteAll() {
+		String sqlDelete = "DELETE FROM hotel";
+		String sqlReset = "ALTER TABLE hotel AUTO_INCREMENT = 1";
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		namedParameterJdbcTemplate.update(sqlDelete, map);
+		namedParameterJdbcTemplate.update(sqlReset, map);
+	}
+	
 
 }
