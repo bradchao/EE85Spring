@@ -59,4 +59,9 @@ public class HotelServiceImpl implements HotelService{
 		return hotelDao.get(id);
 	}
 
+	@Override
+	public List<Hotel> getHotel(String key) {
+		return hotelDao.get(key);
+	}
+
 }

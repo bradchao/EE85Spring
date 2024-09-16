@@ -39,7 +39,7 @@ public class HotelController {
 	
 	@GetMapping("/search/{key}")
 	public List<Hotel> getHotel(@PathVariable String key) {
-		return null;
+		return hotelService.getHotel(key);
 	}
 	
 }

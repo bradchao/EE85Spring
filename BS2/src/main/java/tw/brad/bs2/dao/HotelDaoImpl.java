@@ -90,8 +90,16 @@ public class HotelDaoImpl implements HotelDao{
 
 	@Override
 	public List<Hotel> get(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT id,name,addr,tel FROM hotel " + 
+					"WHERE name LIKE :skey OR addr LIKE :skey OR tel LIKE :skey";
+		String skey = "%" + key + "%";
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("skey", skey);
+		
+		List<Hotel> list = namedParameterJdbcTemplate.query(sql, map, new HotelRowMapper());
+		
+		return list;
 	}
 	
 
