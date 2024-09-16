@@ -73,6 +73,26 @@ public class HotelDaoImpl implements HotelDao{
 		namedParameterJdbcTemplate.update(sqlDelete, map);
 		namedParameterJdbcTemplate.update(sqlReset, map);
 	}
+
+	@Override
+	public Hotel get(Long id) {
+		String sql = "SELECT id,name,addr,tel FROM hotel WHERE id = :id";
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		List<Hotel> list = namedParameterJdbcTemplate.query(sql, map, new HotelRowMapper());
+		if (list.size() > 0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Hotel> get(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

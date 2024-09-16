@@ -54,4 +54,9 @@ public class HotelServiceImpl implements HotelService{
 		return hotelDao.add(hotel);
 	}
 
+	@Override
+	public Hotel getHotel(Long id) {
+		return hotelDao.get(id);
+	}
+
 }
