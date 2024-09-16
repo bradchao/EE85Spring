@@ -5,6 +5,16 @@ public class User {
 	private String account;
 	private String passwd;
 	private String name;
+	
+	private byte[] icon;
+	
+	
+	public byte[] getIcon() {
+		return icon;
+	}
+	public void setIcon(byte[] icon) {
+		this.icon = icon;
+	}
 	public Long getId() {
 		return id;
 	}
