@@ -49,4 +49,9 @@ public class HotelServiceImpl implements HotelService{
 		
 	}
 
+	@Override
+	public Hotel addHotel(Hotel hotel) {
+		return hotelDao.add(hotel);
+	}
+
 }

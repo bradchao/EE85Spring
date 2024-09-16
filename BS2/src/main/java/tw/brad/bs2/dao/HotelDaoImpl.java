@@ -1,10 +1,13 @@
 package tw.brad.bs2.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
 
 import tw.brad.bs2.model.Hotel;
@@ -17,6 +20,25 @@ public class HotelDaoImpl implements HotelDao{
 	
 	@Override
 	public Hotel add(Hotel hotel) {
+		String sql = "INSERT INTO hotel (name,addr,tel) VALUES (:name, :addr, :tel)";
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", hotel.getName());
+		map.put("addr", hotel.getAddress());
+		map.put("tel", hotel.getTel());
+		
+		
+		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+		MapSqlParameterSource source = new MapSqlParameterSource(map);
+		
+		int num = namedParameterJdbcTemplate.update(sql, source, keyHolder);
+		
+		if (num > 0) {
+			long id = keyHolder.getKey().longValue();
+			hotel.setId(id);
+			return hotel;
+		}
+		
 		return null;
 	}
 
